@@ -63,9 +63,10 @@ async function obterProdutosLINX(path) {
     } catch(erro){
         console.error(erro)
     }
+
 }
 
-
+console.log("Teste")
 
 // obterProdutosVTEX(produtosVTEXCSV).then((result) => {
 //     console.log(result)
