@@ -48,25 +48,24 @@ async function obterProdutosLINX(path) {
         const JSONProdutos = await converterCSVparaJSON(path)
         arrayProdutosLINX = []; // Limpa o array antes de preenchê-lo novamente
 
-        for (let i = 0; i < 2; i++) {
+        for (let i = 0; i < 3; i++) {
             const produto = JSONProdutos[i];
-            let sku = '';
+
+            // Expressão regular para extrair o sku
+            let skuMatch = produto['Address'].match(/-(\d+)-/)
+
+            // Adiciona o dados do produtos em um array de objetos
             arrayProdutosLINX.push({
                 Nome: produto['Title 1'],
                 link: produto['Address'],
-                skuProduto: ''
+                skuProduto: parseInt(skuMatch ? skuMatch[1] : null), // Capturar o SKU se Match for encontrado, aplica null se não
             })
-            sku = arrayProdutosLINX[i].link.match(/-(\d+)-/)
-            arrayProdutosLINX[i].skuProduto = sku
         }
-        return arrayProdutosLINX
+        return arrayProdutosLINX;
     } catch(erro){
         console.error(erro)
     }
-
 }
-
-console.log("Teste")
 
 // obterProdutosVTEX(produtosVTEXCSV).then((result) => {
 //     console.log(result)
