@@ -5,8 +5,8 @@ const {
 } = require('csv-writer');
 
 // Path do csv 
-const produtosVTEXCSV = './csv/produtos.csv';
-const produtosLINXCSV = './csv/produtos-venture.csv';
+const produtosVTEXCSV = './csv/atendimentoliveseo@gmail.com_planilha_productAndSkus_page-0_638300615909023142.csv';
+const produtosLINXCSV = './csv/internal_all-venture.csv';
 const caminhoArquivo = './csv/dados.csv';
 
 
@@ -52,7 +52,7 @@ async function obterProdutosLINX(path) {
     try {
 
         const JSONProdutos = await converterCSVparaJSON(path)
-        const regexForSkuInTheURL = /-(\d+)-/ // Regex para procurar a ocorrencia de sku na url do produto 
+        const regexForSkuInTheURL = /-([0-9][0-9][0-9]+)-p[0-9]+/ // Regex para procurar a ocorrencia de sku na url do produto 
         let arrayProdutosLINX = []
         console.log()
         for (let i = 0; i < JSONProdutos.length; i++) {
